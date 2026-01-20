@@ -1,0 +1,178 @@
+/*-----------------------------------*\
+ * #PROJECT
+\*-----------------------------------*/
+
+.project {
+  padding-block: var(--section-padding);
+}
+
+.project-list > li {
+  margin-bottom: 25px;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-12);
+  box-shadow: 2px 4px 6px hsla(0, 0%, 0%, 0.2);
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transition: var(--transition-1);
+}
+
+.project-card:is(:hover, :focus)::after {
+  background: hsla(0, 0%, 100%, 0.1);
+}
+
+.project-card .card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+}
+
+.project-card .card-title {
+  margin-bottom: 10px;
+}
+
+.project-card :is(.card-title, .publish-date) {
+  background: var(--bg-primary);
+  padding: 6px 12px;
+  width: max-content;
+  box-shadow: var(--shadow-1);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: var(--transition-1);
+}
+
+.project-card .publish-date {
+  font-size: var(--fs-6);
+  color: var(--color-primary);
+  transition-delay: 0s;
+}
+
+.project-card:is(:hover, :focus) :is(.card-title, .publish-date) {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.project-card:is(:hover, :focus) .publish-date {
+  transition-delay: 0.1s;
+}
+
+.load-more {
+  font-size: var(--fs-4);
+  color: var(--raw-sienna);
+  text-decoration: underline;
+  margin-inline: auto;
+}
+
+
+/*-----------------------------------*\
+ * #PROJECT MODAL
+\*-----------------------------------*/
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  background: hsla(0, 0%, 0%, 0.8);
+  display: grid;
+  place-items: center;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+}
+
+.project-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  position: relative;
+  background: var(--bg-secondary);
+  width: 100%;
+  max-width: 800px;
+  max-height: 85vh;
+  border-radius: var(--radius-12);
+  padding: 40px 30px;
+  overflow-y: auto;
+  box-shadow: 0 10px 50px hsla(0, 0%, 0%, 0.5);
+  transform: scale(0.8);
+  transition: 0.4s cubic-bezier(0.3, 0, 0.2, 1);
+  border: 1px solid hsla(0, 0%, 100%, 0.05);
+}
+
+.project-modal.active .modal-container {
+  transform: scale(1);
+}
+
+/* Hide scrollbar for modal container */
+.modal-container::-webkit-scrollbar {
+  display: none;
+}
+.modal-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--bg-primary);
+  color: var(--color-primary);
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  transition: var(--transition-1);
+}
+
+.modal-close-btn:hover {
+  background: var(--raw-sienna);
+  color: var(--white);
+  transform: rotate(90deg);
+}
+
+.modal-content {
+  color: var(--color-secondary);
+  line-height: 1.6;
+}
+
+.modal-content img {
+  border-radius: var(--radius-12);
+  margin-bottom: 20px;
+}
+
+.modal-content p {
+  margin-bottom: 20px;
+}
+
+.project-detail ul {
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.project-detail li {
+  list-style: disc;
+  margin-bottom: 8px;
+  color: var(--color-secondary);
+}
+
+.project-detail h2 {
+  font-size: var(--fs-2);
+  margin-top: 10px;
+}

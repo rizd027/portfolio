@@ -1,0 +1,245 @@
+/*-----------------------------------*\
+ * #HEADER
+\*-----------------------------------*/
+
+.header {
+  padding-block: 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: var(--transition-1);
+  z-index: 10;
+  background: transparent;
+}
+
+.header.active {
+  padding-block: 12px;
+  background: hsla(0, 0%, 19%, 0.9);
+}
+
+body.light_theme .header.active {
+  background: hsla(0, 0%, 100%, 0.9);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  position: relative;
+  min-width: 77px;
+  z-index: 2;
+}
+
+.logo a {
+  background: linear-gradient(
+    to right,
+    var(--color-primary) 20%,
+    var(--raw-sienna) 40%,
+    var(--sizzling-sunrise) 50%,
+    var(--raw-sienna) 60%,
+    var(--color-primary) 80%
+  );
+  background-size: 200% auto;
+  color: var(--color-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4s ease-in-out infinite;
+  font-family: var(--ff-saira-stencil-one);
+  will-change: background-position;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+
+.logo span {
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+}
+
+/* Custom Language Switcher */
+.lang-switcher {
+  position: relative;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-secondary);
+  color: var(--color-primary);
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-weight: var(--fw-700);
+  transition: var(--transition-1);
+  box-shadow: var(--shadow-1);
+}
+
+.lang-btn ion-icon {
+  font-size: 18px;
+}
+
+.lang-btn .chevron {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+  color: var(--color-secondary);
+}
+
+.lang-btn.active .chevron {
+  transform: rotate(180deg);
+}
+
+.lang-list {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  background: var(--bg-secondary);
+  min-width: 140px;
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 10px 40px hsla(0, 0%, 0%, 0.3);
+  transform: translateY(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.27, 2);
+  z-index: 10;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid hsla(0, 0%, 100%, 0.05);
+}
+
+.lang-list {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%) translateY(10px);
+}
+
+.lang-list.active {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.lang-item {
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: var(--transition-1);
+  color: var(--color-secondary);
+  font-family: var(--ff-poppins);
+  font-size: var(--fs-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lang-item:hover {
+  background: hsla(0, 0%, 100%, 0.05);
+  color: var(--color-primary);
+}
+
+.lang-item.active {
+  color: var(--raw-sienna);
+  background: hsla(24, 74%, 58%, 0.1);
+  font-weight: var(--fw-700);
+}
+
+.lang-item::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--raw-sienna);
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.lang-item.active::after {
+  opacity: 1;
+}
+
+.theme-btn {
+  padding: 4px;
+  width: 48px;
+  background: var(--bg-secondary);
+  border-radius: 100px;
+  transition: var(--transition-1);
+}
+
+.header.active .theme-btn {
+  background: var(--bg-primary);
+}
+
+.theme-btn .icon {
+  position: relative;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  box-shadow: inset 9px -6px var(--color-primary);
+  transition: var(--transition-1);
+}
+
+.theme-btn.active .icon {
+  left: 20px;
+  box-shadow: inset 20px -20px var(--sizzling-sunrise);
+}
+
+.nav-toggle-btn {
+  position: relative;
+  transform: rotate(-55deg);
+  transition: var(--transition-1);
+  z-index: 10; /* High z-index to stay on top of navbar */
+}
+
+.nav-toggle-btn.active {
+  transform: rotate(-45deg);
+}
+
+.nav-toggle-btn span {
+  width: 20px;
+  height: 2px;
+  background: var(--color-primary);
+  margin: 5px;
+  transition: var(--transition-1);
+}
+
+.nav-toggle-btn :is(.one, .three) {
+  width: 10px;
+}
+
+.nav-toggle-btn .one {
+  margin-left: auto;
+  transform-origin: left;
+}
+
+.nav-toggle-btn .three {
+  transform-origin: right;
+}
+
+.nav-toggle-btn.active .one {
+  transform: rotate(90deg) translateX(-3px);
+}
+
+.nav-toggle-btn.active .three {
+  transform: rotate(90deg) translateX(3px);
+}
